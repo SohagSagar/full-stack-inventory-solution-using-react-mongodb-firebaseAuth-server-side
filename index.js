@@ -35,6 +35,18 @@ async function run() {
             res.send(result);
         })
 
+        //get api for a user's added items
+
+        app.get("/inventories", async (req, res) => {
+            const email=req.query.email;
+            const query = {email};
+            const cursor = inventoryCollection.find(query);
+            const result = await cursor.toArray();
+            console.log(query);
+            res.send(result);
+        })
+
+        //get api for a perticular item
         app.get("/inventories/:id",async(req,res)=>{
             const id = req.params.id;
             const query ={_id:ObjectId(id)};
@@ -42,12 +54,7 @@ async function run() {
             res.send(result);
         })
 
-        // app.get("/inventories/:id",async(req,res)=>{
-        //     const id = req.params.id;
-        //     const query ={_id:ObjectId(id)};
-        //     const result =await inventoryCollection.findOne(query);
-        //     res.send(result);
-        // })
+        
 
 
         //create/POST notes api
