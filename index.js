@@ -31,7 +31,7 @@ async function run() {
             const q = req.query;
             const cursor = inventoryCollection.find(q);
             const result = await cursor.toArray();
-            console.log(q);
+            console.log(result);
             res.send(result);
         })
 
